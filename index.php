@@ -21,6 +21,7 @@ require_once LIBS_PATH."/functions.php";
 require_once LIBS_PATH."/route.class.php";
 require_once LIBS_PATH."/db.class.php";
 require_once LIBS_PATH."/smarty/Smarty.class.php";
+require_once LIBS_PATH."/main.class.php";
 
 $routeObj=new route();
 $routeObj->getInfo();

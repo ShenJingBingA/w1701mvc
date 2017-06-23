@@ -1,22 +1,18 @@
 <?php
-
-//模板引擎
-class index{
+class index extends main {
     function init(){
-          $obj=new db("category");
-          $result=$obj->setField("lists.title,message.con")->where("lists.id=message.lid")->join("lists,message");
+         $obj=new db("category");
+         $result=$obj->select();
+         $this->smarty->assign("result",$result);
+         $this->smarty->display("index.html");
 
-        //1. 查询数据
-        //2. 指定视图
-        //3. 在相应的视图里面放入相应的数据
-        $smarty=new Smarty();
-        $smarty->setTemplateDir("template");
-        $smarty->setCompileDir("compile");
-
-        $smarty->assign("result",$result);
-        $smarty->display("index.html");
     }
     function del(){
       echo "删除";
+    }
+
+    function login(){
+
+        $this->smarty->display("login.html");
     }
 }
