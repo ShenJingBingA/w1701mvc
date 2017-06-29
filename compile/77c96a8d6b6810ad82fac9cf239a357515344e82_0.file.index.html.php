@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-06-29 03:38:47
+/* Smarty version 3.1.30, created on 2017-06-29 05:52:52
   from "/Users/gaoxin/Documents/www/w1701/mvc/template/index/index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59545a2751a3d2_52915994',
+  'unifunc' => 'content_595479948b9f11_22794698',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '77c96a8d6b6810ad82fac9cf239a357515344e82' => 
     array (
       0 => '/Users/gaoxin/Documents/www/w1701/mvc/template/index/index.html',
-      1 => 1498700325,
+      1 => 1498708325,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59545a2751a3d2_52915994 (Smarty_Internal_Template $_smarty_tpl) {
+function content_595479948b9f11_22794698 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -88,6 +88,34 @@ function content_59545a2751a3d2_52915994 (Smarty_Internal_Template $_smarty_tpl)
         .regBox{
             height:370px;display: none;
         }
+        .errorMessage{
+            width:100%;height:44px;
+            background: #222;
+            position: absolute;
+            left:0;top:0;
+            text-align: center;
+            line-height: 44px;
+            opacity: 0;
+            display: none;
+            animation: opacity 2s linear;
+            color:#fff;
+        }
+
+        @keyframes opacity {
+            0%{
+                opacity: 0;
+            }
+            20%{
+                opacity: 1;
+            }
+
+            90%{
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
 
     </style>
     <?php echo '<script'; ?>
@@ -118,14 +146,101 @@ function content_59545a2751a3d2_52915994 (Smarty_Internal_Template $_smarty_tpl)
                 $(".regBox").css("display","none");
             })
 
+            $(".regBox,.loginBox").submit(function(){
+                return false;
+            })
 
 
+//判断登陆状态
             $(".info").click(function(){
                 $.ajax({
                     url:"index.php?m=index&f=info&a=add",
                     success:function(e){
                         if(e=="nologin"){
+
                             $(".loginBox").css("display","block");
+                            $(".regBox").css("display","none");
+                        }else if(e=="ok"){
+                            location.href="index.php?m=index&f=info"
+                        }
+                    }
+                })
+            })
+
+
+         //注册
+
+          $(".willReg").click(function(){
+               var str=$(".regBox").serialize();
+              $.ajax({
+                  url:"index.php?m=index&f=login&a=reg",
+                  type:"post",
+                  data:str,
+                  success:function(e){
+
+                        $(".errorMessage").html(e).css("display","block").css("animation","opacity 2s linear");
+
+                        $(".errorMessage")[0].addEventListener("webkitAnimationEnd",function(){
+                            $(".errorMessage").css("display","none")
+                        })
+
+                      if(e=="ok"){
+                            $(".regBox input").val("");
+                      }
+
+                  }
+              })
+          })
+
+            //登陆
+            $(".willLogin").click(function(){
+                var str=$(".loginBox").serialize();
+                $.ajax({
+                    url:"index.php?m=index&f=login&a=willLogin",
+                    type:"post",
+                    data:str,
+                    success:function(e){
+                        $(".errorMessage").html(e).css("display","block").css("animation","opacity 2s linear");
+
+                        $(".errorMessage")[0].addEventListener("webkitAnimationEnd",function(){
+                            $(".errorMessage").css("display","none")
+                        })
+
+
+                        if(e=="ok,即将跳转...."){
+                           setTimeout(function(){
+
+                               location.href="index.php";
+                           },1000)
+                        }
+                    }
+
+
+                })
+            })
+
+            //退出登陆
+
+            $(".logout").click(function(){
+                $.ajax({
+                    url:"index.php?m=index&f=login&a=logout",
+                    type:"post",
+                    success:function(e){
+                        if(e=="ok"){
+                            $(".errorMessage").html("即将退出...").css("display","block").css("animation","opacity 2s linear");
+
+                            $(".errorMessage")[0].addEventListener("webkitAnimationEnd",function(){
+                                $(".errorMessage").css("display","none")
+                            })
+
+
+
+                                setTimeout(function(){
+
+                                    location.href="index.php";
+                                },1000)
+
+
                         }
                     }
                 })
@@ -140,17 +255,34 @@ function content_59545a2751a3d2_52915994 (Smarty_Internal_Template $_smarty_tpl)
             xxx博客家园
         </h3>
         <h3 class="login">
-            <a href="">
+
+            <?php if ($_smarty_tpl->tpl_vars['login']->value) {?>
+            欢迎<?php echo $_smarty_tpl->tpl_vars['mname']->value;?>
+,
+            <a href="index.php?m=index&f=member">
+                个人中心
+            </a>
+            <a href="javascript:;" class="logout">
+                退出登陆
+            </a>
+            <?php } else { ?>
+            <a href="javascript:;" class="loginBtn">
                 登陆
             </a>
-            <a href="">
+            <a href="javascript:;" class="regBtn">
                 注册
             </a>
+            <?php }?>
+
             <a href="javascript:;" class="info">
                 发表内容
             </a>
         </h3>
     </header>
+
+
+
+
 
     <form class="loginBox">
         <div class="title">
@@ -170,11 +302,11 @@ function content_59545a2751a3d2_52915994 (Smarty_Internal_Template $_smarty_tpl)
 
         <div class="form-group">
             <label for="exampleInputPassword1">验证码</label>
-            <input type="text" class="form-control" placeholder="验证码" name="mpass" style="display: inline-block;width:100px;">
+            <input type="text" class="form-control" placeholder="验证码" name="code" style="display: inline-block;width:100px;">
             <img src="index.php?a=code" alt="" onclick="this.src=this.src+'&code='+Math.random()">
         </div>
 
-        <button type="submit" class="btn btn-default">登陆</button>
+        <button type="submit" class="btn btn-default willLogin">登陆</button>
         <span>没有账户?请 <a href="javascript:;" class="regBtn">注册</a></span>
     </form>
 
@@ -203,13 +335,17 @@ function content_59545a2751a3d2_52915994 (Smarty_Internal_Template $_smarty_tpl)
 
         <div class="form-group">
             <label for="exampleInputPassword1">验证码</label>
-            <input type="text" class="form-control" placeholder="验证码" name="mpass" style="display: inline-block;width:100px;">
+            <input type="text" class="form-control" placeholder="验证码" name="code" style="display: inline-block;width:100px;">
             <img src="index.php?a=code" alt="" onclick="this.src=this.src+'&code='+Math.random()">
         </div>
 
-        <button type="submit" class="btn btn-default">注册</button>
+        <button type="submit" class="btn btn-default willReg">注册</button>
         <span>已有账户?请 <a href="javascript:;" class="loginBtn">登陆</a></span>
     </form>
+
+    <div class="errorMessage">
+
+    </div>
 </body>
 </html><?php }
 }
