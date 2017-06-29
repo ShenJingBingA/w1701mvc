@@ -11,16 +11,17 @@ class db{
    private $pass;//密码
    private $database;//数据库
    private $port;//端口
-   private $db;//连接的资源
+   public $db;//连接的资源
    function __construct($table){
        $this->table=$table;
-       $config=require_once APP_PATH."/config.php";
+       $config=require APP_PATH."/config.php";
         $this->host=$config["database"]["host"];
         $this->user=$config["database"]["user"];
         $this->pass=$config["database"]["pass"];
         $this->database=$config["database"]["database"];
         $this->port=$config["database"]["port"];
         $this->db=mysqli_connect($this->host,$this->user,$this->pass,$this->database,$this->port);
+
         if(!$this->db){
          echo mysqli_connect_error();
          exit();
@@ -32,13 +33,16 @@ class db{
 
    }
 
+
+
    function select(){
        $sql="select ".$this->opts["field"]." from ".$this->table." ".$this->opts["where"]." ".$this->opts["order"]." ".$this->opts["limit"];
        $result=$this->db->query($sql);
        $array=array();
-       while ($row=$result->fetch_assoc()){
+       while ($row=mysqli_fetch_assoc($result)){
             $array[]=$row;
        }
+       mysqli_free_result($result);
        return $array;
    }
 
@@ -126,6 +130,10 @@ class db{
      }
 
      return $array;
+   }
+
+   function close(){
+       mysqli_close($this->db);
    }
 
 

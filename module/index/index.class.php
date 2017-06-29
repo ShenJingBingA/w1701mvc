@@ -1,18 +1,15 @@
 <?php
-class index extends main {
+class index extends indexMain {
     function init(){
-         $obj=new db("category");
-         $result=$obj->select();
-         $this->smarty->assign("result",$result);
-         $this->smarty->display("index.html");
-
-    }
-    function del(){
-      echo "删除";
+        $this->smarty->display("index.html");
     }
 
-    function login(){
-
-        $this->smarty->display("login.html");
+    function code(){
+        $obj=new code();
+        $obj->codeUrl="demo.ttf";
+        $obj->width=120;
+        $obj->height=30;
+        $obj->output();
+        $this->session->set("code",$obj->current);
     }
 }

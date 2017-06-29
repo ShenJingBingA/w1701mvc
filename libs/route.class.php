@@ -20,7 +20,6 @@ class route{
             if(is_file($f)){
                 include $f;
                 if(class_exists(self::$f)){
-
                      $obj=new self::$f();
                     if(method_exists($obj,self::$a)){
 
