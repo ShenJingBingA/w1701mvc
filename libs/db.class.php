@@ -35,8 +35,12 @@ class db{
 
 
 
-   function select(){
-       $sql="select ".$this->opts["field"]." from ".$this->table." ".$this->opts["where"]." ".$this->opts["order"]." ".$this->opts["limit"];
+   function select($sql=""){
+       if(empty($sql)) {
+           $sql = "select " . $this->opts["field"] . " from " . $this->table . " " . $this->opts["where"] . " " . $this->opts["order"] . " " . $this->opts["limit"];
+       }else{
+           $sql=$sql;
+       }
        $result=$this->db->query($sql);
        $array=array();
        while ($row=mysqli_fetch_assoc($result)){

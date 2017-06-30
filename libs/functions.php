@@ -8,3 +8,10 @@ function e($params){
        echo $params;
    }
 }
+
+function P($params){
+   return  $_POST[$params];
+}
+function G($params){
+    return  $_GET[$params];
+}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-06-29 02:57:21
+/* Smarty version 3.1.30, created on 2017-06-30 05:42:28
   from "/Users/gaoxin/Documents/www/w1701/mvc/template/admin/main.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_59545071a0b294_71631415',
+  'unifunc' => 'content_5955c8a46e0435_21803338',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc8094ff0fbc690ab1e27d2c03cd50b4cf4ef985' => 
     array (
       0 => '/Users/gaoxin/Documents/www/w1701/mvc/template/admin/main.html',
-      1 => 1498697837,
+      1 => 1498794146,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59545071a0b294_71631415 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5955c8a46e0435_21803338 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -149,7 +149,21 @@ iframe{
                 </li>
 
                 <li>
-                    <a href="showPos.php" target="iframe">查看内容</a>
+                    <a href="index.php?m=admin&f=lists&a=add" target="iframe">查看内容</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;">推荐位管理</a>
+            <ul>
+                <li>
+                    <a href="index.php?m=admin&f=position&a=add" target="iframe">添加位置</a>
+                </li>
+
+                <li>
+                    <a href="showPos.php" target="iframe">查看位置</a>
                 </li>
             </ul>
         </li>

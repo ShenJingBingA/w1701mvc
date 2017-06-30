@@ -1,13 +1,61 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-发布信息
+{include "header.html"}
+
+<script type="text/javascript" charset="utf-8" src="{EDIT_PATH}/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="{EDIT_PATH}/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="{EDIT_PATH}/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="{JS_PATH}/upload.js"></script>
+
+<form style="width:auto;height:auto;position: static" method="post" action="index.php?m=index&f=info&a=addCon">
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">所属话题</label>
+        <select class="form-control" name="cid">
+            <option>选择话题</option>
+            {$str}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">标题</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="stitle">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">关键词</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="keywords">
+
+    </div>
+    <div class="form-group">
+        <script id="editor" type="text/plain" name="scon"></script>
+    </div>
+    <div class="form-group uploadbox">
+
+        <label for="exampleInputFile">上传图片</label>
+
+        <input type="hidden" name="simage">
+
+    </div>
+    {foreach $position as $v}
+    <div class="checkbox" style="margin-left:20px;">
+            <input type="checkbox" name="posid[]" value="{$v['posid']}">{$v["posname"]}
+
+    </div>
+    {/foreach}
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<script>
+    var ue = UE.getEditor('editor');
+
+    var obj = new upload();
+    obj.size = 1024 * 1024 * 8.6;
+    obj.selectBtnStyle.background = "red";
+    obj.createView({
+        parent: document.querySelector(".uploadbox")
+    });
+    obj.up("index.php?m=index&f=info&a=upload",function(data){
+        document.querySelector("input[name=simage]").value=data;
+    });
+</script>
 </body>
 </html>

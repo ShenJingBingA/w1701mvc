@@ -14,6 +14,7 @@ define("URL_PATH",$prot."://".$server["HTTP_HOST"].$path);
 define("CSS_PATH",$prot."://".$server["HTTP_HOST"].$path."/static/css");
 define("IMG_PATH",$prot."://".$server["HTTP_HOST"].$path."/static/img");
 define("JS_PATH",$prot."://".$server["HTTP_HOST"].$path."/static/js");
+define("EDIT_PATH",$prot."://".$server["HTTP_HOST"].$path."/static/editor");
 
 define("SELF_PATH",$prot."://".$server["HTTP_HOST"].$server["SCRIPT_NAME"]);
 
@@ -26,6 +27,8 @@ require_once LIBS_PATH."/indexMain.class.php";
 require_once LIBS_PATH."/code.class.php";
 require_once LIBS_PATH."/session.class.php";
 require_once LIBS_PATH."/tree.class.php";
+require_once LIBS_PATH."/upload.class.php";
+require_once LIBS_PATH."/page.class.php";
 
 $routeObj=new route();
 $routeObj->getInfo();
