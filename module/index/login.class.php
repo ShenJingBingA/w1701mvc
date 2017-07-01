@@ -71,7 +71,9 @@ class login extends indexMain{
                     $this->session->set("mid",$v["mid"]);
                     $this->session->set("nicheng",$v["nicheng"]);
                     $this->session->set("mrole",$v["mrole"]);
-                    echo "ok,即将跳转....";
+                    $near=$this->session->get("near")?$this->session->get("near"):"index.php";
+
+                    echo "ok".$near;
                     exit();
                 }
             }

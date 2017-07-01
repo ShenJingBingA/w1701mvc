@@ -1,0 +1,56 @@
+{include "header.html"}
+<script src="{JS_PATH}/show.js"></script>
+
+<style>
+    .stitle{
+        width:1000px;margin: auto;
+        text-align: center;
+    }
+    .scon{
+        width:1000px;margin: auto;
+        border:1px solid #ccc;
+
+    }
+</style>
+
+<div class="stitle" sid="{$con[0].sid}" mid="{$con[0].mid}">
+ <h3>{$con[0].stitle}</h3>
+ <span>作者：{$con[0].mname}</span>
+ <span>时间：{$con[0].stime}</span>
+ <span>点击量：{$con[0].hits+1}</span>
+ <div style="text-align: left">
+  {if $status=="nologin"}
+ <button type="button" class="btn btn-primary guanzhu">关注</button>
+  <button type="button" class="btn btn-primary cancelguanzhu" style="display: none" >取消关注</button>
+  {else if $status=="self"}
+  <button type="button" class="btn btn-primary guanzhu" style="display:none">关注</button>
+  <button type="button" class="btn btn-primary cancelguanzhu" style="display: none" >取消关注</button>
+  {else if $status=="true"}
+  <button type="button" class="btn btn-primary guanzhu" style="display:none">关注</button>
+  <button type="button" class="btn btn-primary cancelguanzhu" >取消关注</button>
+  {else if $status=="false"}
+  <button type="button" class="btn btn-primary guanzhu" >关注</button>
+  <button type="button" class="btn btn-primary cancelguanzhu" style="display:none">取消关注</button>
+  {/if}
+
+
+ </div>
+</div>
+
+
+
+<div class="scon">
+{$con[0].scon}
+</div>
+
+<script>
+    $.ajax({
+        url:"index.php?m=index&f=show&a=hits",
+        type:"post",
+        data:{
+            sid:$(".stitle").attr("sid")
+        }
+    })
+</script>
+</body>
+</html>

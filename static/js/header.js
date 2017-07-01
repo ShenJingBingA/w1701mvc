@@ -81,11 +81,12 @@ $(function(){
                     $(".errorMessage").css("display","none")
                 })
 
-
-                if(e=="ok,即将跳转...."){
+                alert(e);
+                if(e.indexOf("ok")>-1){
+                    $(".errorMessage").html("ok,请等候").css("display","block").css("animation","opacity 2s linear");
                     setTimeout(function(){
 
-                        location.href="index.php";
+                        location.href=e.substr(2);
                     },1000)
                 }
             }

@@ -41,6 +41,7 @@ class db{
        }else{
            $sql=$sql;
        }
+
        $result=$this->db->query($sql);
        $array=array();
        while ($row=mysqli_fetch_assoc($result)){
@@ -59,7 +60,7 @@ class db{
        return $this;
    }
    function order($params){
-       $this->opts["order"]="ORDER BY ".$params;
+       $this->opts["order"]="ORDER BY  ".$params;
        return $this;
    }
     function limit($params){

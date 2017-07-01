@@ -1,3 +1,113 @@
 {include "header.html"}
+<style>
+    ul,li{
+        padding:0;
+    }
+    nav{
+        width:1000px;height:30px;
+        margin:auto;border:1px solid #ccc;
+        margin-top: 20px;
+    }
+    .wheel{
+        width:1000px;height:200px;
+        margin:auto;margin-top: 20px;
+        border:1px solid #ccc;
+    }
+    .main{
+        margin:auto;
+        width:1000px;
+    }
+    .main .left{
+        width:70%;float: left;
+    }
+    .main .right{
+        width:28%;float: right;
+    }
+    .list{
+        margin:5px 0;
+        border:1px solid #ccc;
+        padding:5px;
+        display: flex;
+
+    }
+
+
+    .list .img{
+        width:100px;height:100px;
+        border:1px solid #ccc;
+    }
+    .list .con{
+        margin-left:20px;
+    }
+    .hot{
+        color:red;
+    }
+
+
+</style>
+
+<nav>
+    导航
+</nav>
+<div class="wheel">
+轮播
+</div>
+<div class="main">
+    <div class="left">
+        <ul class="listbox hot">
+            {foreach $hot as $v}
+            <a href="index.php?m=index&f=show&sid={$v['sid']}" class="list">
+                <div class="img">
+                    <img src="{$v['simage']}" alt="" style="width:100%">
+                </div>
+                <div class="con">
+                    <h3>
+                        {$v["stitle"]}
+                    </h3>
+                </div>
+            </a>
+            {/foreach}
+        </ul>
+
+        <ul class="listbox">
+            {foreach $normal as $v}
+            <a href="index.php?m=index&f=show&sid={$v['sid']}"  class="list">
+                <div class="img">
+                    <img src="{$v['simage']}" alt="" style="width:100%">
+                </div>
+                <div class="con">
+                    <h3>
+                        {$v["stitle"]}
+                    </h3>
+                </div>
+            </a>
+            {/foreach}
+        </ul>
+
+
+
+    </div>
+    <div class="right">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                热门文章
+            </a>
+            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item">Morbi leo risus</a>
+            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                推荐文章
+            </a>
+            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item">Morbi leo risus</a>
+            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+            <a href="#" class="list-group-item">Vestibulum at eros</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
