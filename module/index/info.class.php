@@ -4,11 +4,16 @@ class info extends indexMain{
         if(!$this->session->get("indexLogin")){
            echo "nologin";
         }else{
-            echo "ok";
+            if($this->session->get("mrole")==1){
+                echo "禁言";
+            }else{
+                echo "ok";
+            }
         }
     }
 
     function init(){
+        $mid=$this->session->get("mid");
         $this->smarty->assign("login",$this->session->get("indexLogin"));
         $this->smarty->assign("mname",$this->session->get("mname"));
 
@@ -29,20 +34,29 @@ class info extends indexMain{
     }
 
     function addCon(){
+
         $stitle=$_POST["stitle"];
         $scon=$_POST["scon"];
         $simage=$_POST["simage"];
         $mid=$this->session->get("mid");
         $cid=$_POST["cid"];
-        $status=0;
-        $posid=$_POST["posid"];
-        $posid=implode(";",$posid);
+        if($this->session->get("mrole")==2)      {
+            $status = 2;
+        }else{
+            $status=0;
+        }
+        $posid=empty($_POST["posid"])?"":implode(";",$_POST["posid"]);
+
         $keywords=P("keywords");
 
         $db=new db("lists");
         $sql="stitle='{$stitle}',scon='{$scon}',simage='{$simage}',mid='{$mid}',cid='{$cid}',status='{$status}',posid='{$posid}',keywords='{$keywords}'";
 
+
+
+
         if($db->insert($sql)>0){
+
             $this->jump("插入成功","index.php?m=index&f=info");
         }
 

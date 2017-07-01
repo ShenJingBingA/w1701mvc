@@ -24,7 +24,6 @@ $(function(){
         return false;
     })
 
-
 //判断登陆状态
     $(".info").click(function(){
         $.ajax({
@@ -36,6 +35,8 @@ $(function(){
                     $(".regBox").css("display","none");
                 }else if(e=="ok"){
                     location.href="index.php?m=index&f=info"
+                }else{
+                    alert(e);
                 }
             }
         })

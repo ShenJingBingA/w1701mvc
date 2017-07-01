@@ -69,6 +69,8 @@ class login extends indexMain{
                 if($v["mpass"]==md5($mpass)){$this->session->set("indexLogin","yes");
                     $this->session->set("mname",$v["mname"]);
                     $this->session->set("mid",$v["mid"]);
+                    $this->session->set("nicheng",$v["nicheng"]);
+                    $this->session->set("mrole",$v["mrole"]);
                     echo "ok,即将跳转....";
                     exit();
                 }

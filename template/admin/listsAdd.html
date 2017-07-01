@@ -29,6 +29,10 @@
             <th>
                 发表时间
             </th>
+
+            <th>
+                作者
+            </th>
             <th>
                 操作
             </th>
@@ -46,6 +50,10 @@
             </td>
             <td>
                 {$v["posid"]}
+
+
+
+
             </td>
             <td>
 
@@ -53,23 +61,45 @@
                   未审核
                 {else if $v["status"]==1}
                    审核中
-                {else if}
+                {else if $v["status"]==2}
                    通过
+                {else if $v["status"]==3}
+                   精华
+                {else if $v["status"]==4}
+                   违规
                 {/if}
             </td>
             <td>
                 {$v["stime"]}
             </td>
             <td>
+                {$v["mname"]}
+            </td>
+            <td>
                 <a href="index.php?m=admin&f=lists&a=del&sid={$v['sid']}">删除</a>
 
-                <a href="index.php?m=admin&f=lists&a=edit&sid={$v['sid']}">编辑</a>
+                <a href="index.php?m=admin&f=lists&a=edit&sid={$v['sid']}&mid={$v['mid']}">编辑</a>
 
                 
             </td>
         </tr>
        {/foreach}
    </table>
+
+
+   <a href="index.php?m=admin&f=lists&a=add">
+       全部
+   </a>
+   <a href="index.php?m=admin&f=lists&a=add&status=2">
+       通过
+   </a>
+   <a href="index.php?m=admin&f=lists&a=add&status=1">
+       审核中
+   </a>
+   <a href="index.php?m=admin&f=lists&a=add&status=0">
+       未审核
+   </a>
+{$pages}
 
 </body>
 </html>

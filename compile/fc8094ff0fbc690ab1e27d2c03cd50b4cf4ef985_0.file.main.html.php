@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-06-30 05:42:28
+/* Smarty version 3.1.30, created on 2017-07-01 03:24:43
   from "/Users/gaoxin/Documents/www/w1701/mvc/template/admin/main.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5955c8a46e0435_21803338',
+  'unifunc' => 'content_5956f9db871e86_52376455',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fc8094ff0fbc690ab1e27d2c03cd50b4cf4ef985' => 
     array (
       0 => '/Users/gaoxin/Documents/www/w1701/mvc/template/admin/main.html',
-      1 => 1498794146,
+      1 => 1498872277,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5955c8a46e0435_21803338 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5956f9db871e86_52376455 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -120,7 +120,7 @@ iframe{
     </li>
 
     <li>
-    <a href="showCategory.php" target="iframe">查看内容</a>
+    <a href="index.php?m=admin&f=member&a=show" target="iframe">查看会员</a>
     </li>
     </ul>
     </li>
