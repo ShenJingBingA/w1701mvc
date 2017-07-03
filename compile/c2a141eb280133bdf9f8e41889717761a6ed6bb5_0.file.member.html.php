@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-06-30 12:12:34
+/* Smarty version 3.1.30, created on 2017-07-03 11:09:33
   from "/Users/gaoxin/Documents/www/w1701/mvc/template/index/member.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_595624126ccf19_20865631',
+  'unifunc' => 'content_595a09cdebdcd1_30882014',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c2a141eb280133bdf9f8e41889717761a6ed6bb5' => 
     array (
       0 => '/Users/gaoxin/Documents/www/w1701/mvc/template/index/member.html',
-      1 => 1498817552,
+      1 => 1499072971,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.html' => 1,
   ),
 ),false)) {
-function content_595624126ccf19_20865631 (Smarty_Internal_Template $_smarty_tpl) {
+function content_595a09cdebdcd1_30882014 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -101,6 +101,12 @@ $_smarty_tpl->_subTemplateRender("file:header.html", $_smarty_tpl->cache_id, $_s
       </a><br>
       <a href="">
           我的回复
+      </a><br>
+      <a href="">
+          我的关注
+      </a><br>
+      <a href="">
+          被关注
       </a>
   </div>
   <div class="right" mid="<?php echo $_smarty_tpl->tpl_vars['mid']->value;?>

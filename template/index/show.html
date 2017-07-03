@@ -3,38 +3,22 @@
 
 <style>
     .stitle{
-        width:1000px;margin: auto;
+       margin: auto;
         text-align: center;
     }
     .scon{
-        width:1000px;margin: auto;
+        margin: auto;
         border:1px solid #ccc;
 
     }
 </style>
-
-<div class="stitle" sid="{$con[0].sid}" mid="{$con[0].mid}">
+<div class="container">
+<div class="stitle" sid="{$con[0].sid}" mid="{$con[0].mid}" me="{$mid}">
  <h3>{$con[0].stitle}</h3>
  <span>作者：{$con[0].mname}</span>
  <span>时间：{$con[0].stime}</span>
  <span>点击量：{$con[0].hits+1}</span>
- <div style="text-align: left">
-  {if $status=="nologin"}
- <button type="button" class="btn btn-primary guanzhu">关注</button>
-  <button type="button" class="btn btn-primary cancelguanzhu" style="display: none" >取消关注</button>
-  {else if $status=="self"}
-  <button type="button" class="btn btn-primary guanzhu" style="display:none">关注</button>
-  <button type="button" class="btn btn-primary cancelguanzhu" style="display: none" >取消关注</button>
-  {else if $status=="true"}
-  <button type="button" class="btn btn-primary guanzhu" style="display:none">关注</button>
-  <button type="button" class="btn btn-primary cancelguanzhu" >取消关注</button>
-  {else if $status=="false"}
-  <button type="button" class="btn btn-primary guanzhu" >关注</button>
-  <button type="button" class="btn btn-primary cancelguanzhu" style="display:none">取消关注</button>
-  {/if}
 
-
- </div>
 </div>
 
 
@@ -43,7 +27,121 @@
 {$con[0].scon}
 </div>
 
-<script>
+<div style="text-align: left">
+ {if $status=="nologin"}
+ <button type="button" class="btn btn-primary guanzhu">关注</button>
+ <button type="button" class="btn btn-primary cancelguanzhu" style="display: none" >取消关注</button>
+ {else if $status=="self"}
+ <button type="button" class="btn btn-primary guanzhu" style="display:none">关注</button>
+ <button type="button" class="btn btn-primary cancelguanzhu" style="display: none" >取消关注</button>
+ {else if $status=="true"}
+ <button type="button" class="btn btn-primary guanzhu" style="display:none">关注</button>
+ <button type="button" class="btn btn-primary cancelguanzhu" >取消关注</button>
+ {else if $status=="false"}
+ <button type="button" class="btn btn-primary guanzhu" >关注</button>
+ <button type="button" class="btn btn-primary cancelguanzhu" style="display:none">取消关注</button>
+ {/if}
+
+
+</div>
+
+ <textarea class="form-control messageSubmitCon" rows="3"></textarea>
+ <button class="btn btn-default messageSubmitBtn" type="submit">留言</button>
+ <button class="btn btn-default messageCancelBtn" type="submit ">取消</button>
+
+ <style>
+  .message-box{
+    width:100%;height:auto;
+  }
+  .liuyan {
+   width:100%;height:auto;
+  }
+
+  .photo-box{
+     height:80px;width:auto;
+     display: flex;margin-top:10px;
+  }
+   .photo{
+      width:70px;height:70px;
+    border:1px solid #ccc;
+    border-radius: 50%;
+   }
+  .name{
+     margin-left:20px;line-height: 80px;
+  }
+  .message-con{
+   margin:5px 0;
+  }
+  h3.title{
+   margin-top:10px;
+   border-bottom: 1px solid #ccc;
+   padding-bottom: 6px;
+  }
+  .replay{
+   border-left:2px solid #000;
+   padding:5px;
+   margin-top:10px;
+  }
+
+ </style>
+
+
+   <h3 class="title">
+    用户留言，共有{$total}条
+   </h3>
+
+
+   {foreach $messages as $v}
+   <div class="message-box">
+       <div class="liuyan" mid="{$v['mid1']}" pid="{$v['id']}">
+           <div class="photo-box">
+               <div class="photo">
+
+               </div>
+               <div class="name">
+                    xxx
+               </div>
+           </div>
+           <div class="message-con">
+             {$v["con"]}
+           </div>
+        <button class="btn btn-default replayBtn" type="submit">回复</button>
+       </div>
+
+       {foreach $v["son"] as $v1}
+       <div class="replay">
+        <div class="photo-box">
+         <div class="photo">
+
+         </div>
+         <div class="name">
+          xxx
+         </div>
+        </div>
+        <div class="message-con">
+         {$v1["con"]}
+        </div>
+        <button class="btn btn-default replayBtn" type="submit">回复</button>
+       </div>
+       {/foreach}
+
+       <div class="replay-box" style="display:none">
+         <textarea class="form-control messageReplayCon" rows="3"></textarea>
+         <button class="btn btn-default messageReplayBtn" type="submit">回复</button>
+         <button class="btn btn-default" type="submit">取消</button>
+       </div>
+   </div>
+    {/foreach}
+</div>
+
+
+
+
+
+
+
+
+<script class="last-script">
     $.ajax({
         url:"index.php?m=index&f=show&a=hits",
         type:"post",
